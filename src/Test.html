@@ -1,0 +1,65 @@
+<html>
+<body>
+    2: <input type=text value=0 onChange="calc()" id="n2"/>
+    <br>
+    5: <input type=text value=0 onChange="calc()" id="n5"/>
+    <br>
+    N: <input type=text value=24  onChange="calc()" id="nn"/>
+    <br>
+    Avg: <input type=text value="3.3"  onChange="calc()" id="na"/>
+    <div id="list">
+123
+    </div>
+    <script type="application/javascript">
+    function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+    function calc()
+    {
+        var n2 = parseInt(document.getElementById("n2").value);
+        var n5 = parseInt(document.getElementById("n5").value);
+        var nn = parseInt(document.getElementById("nn").value);
+        var na = parseFloat( document.getElementById("na").value);
+
+        var total = Math.ceil(na*nn);
+        total -= n2*2;
+        total -= n5*5;
+        var n43 = nn - n2 - n5;
+
+        var max4 = Math.ceil(total/4);
+        if (max4 > n43) {
+            alert("Avg is very high");
+            return;
+        }
+        var min3 = Math.floor(total/3);
+        if (min3 < n43) {
+            alert("Avg is very high");
+            return;
+        }
+
+
+
+        var c3 = Math.floor( n43*4 - total);
+        var c4 = n43-c3;
+        console.log(total, n43, c3,c4)
+        var marks = [];
+        for (var i=0;i<n2;i++) marks.push(2);
+        for (i=0;i<n5;i++) marks.push(5);
+        for (i=0;i<c3;i++) marks.push(3);
+        for (i=0;i<c4;i++) marks.push(4);
+        marks = shuffle(marks);
+        document.getElementById("list").innerHTML = ":"+marks.join(" ");
+        
+
+    }
+    calc();
+    </script>
+</body>
+</html>
